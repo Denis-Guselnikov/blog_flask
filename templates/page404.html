@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<p>Вернуться на <a href="{{ url_for('index') }}">Главную</a> страницу.
+<img src="{{ url_for('static', filename='img/1.png') }}" alt="404error">
+{% endblock %}

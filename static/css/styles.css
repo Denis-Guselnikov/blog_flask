@@ -65,12 +65,12 @@ div.content {
 .flash.success {
 	border: 1px solid #21DB56;
 	background: #AEFFC5;
-	width: 200px;
+	width: 400px;
 }
 .flash.error {
 	border: 1px solid #FF4343;
 	background: #FF9C9C;
-	width: 200px;
+	width: 400px;
 }
 
 ul.list-posts {

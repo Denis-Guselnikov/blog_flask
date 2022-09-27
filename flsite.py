@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from UserLogin import UserLogin
 from forms import LoginForm, RegisterForm
+from admin.admin import admin
 
 
 # Конфигурации
@@ -21,6 +22,8 @@ app.config.from_object(__name__)
 # Полный путь к БД, бд будет находится в рабочем каталоге нашего приложения
 # Почему root_path: во flask может быть несколько приложений и у каждого своя БД и корневой коталог
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))  # Переопределение пути к БД
+
+app.register_blueprint(admin, url_prefix='/admin')
 
 login_manager = LoginManager(app)  # Через login_manager будем управлять процессом авторизации
 login_manager.login_view = 'login'  # перекинуть незарегестрированного пользователя на login
@@ -57,7 +60,7 @@ def get_db():
         g.link_db = connect_db()  # Проверяем существует в g свойство link_db
     return g.link_db
 
-
+dbase = None
 # Установление соединения с БД перед выполнением запроса
 @app.before_request
 def before_request():
